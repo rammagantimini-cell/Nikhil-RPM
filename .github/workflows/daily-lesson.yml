@@ -2,8 +2,8 @@ name: Daily RPM Lesson
 
 on:
   schedule:
-    # Run daily at 12:05 PM Eastern Time (accounts for DST automatically via TZ)
-    - cron: "5 17 * * *"  # 17:05 UTC = 12:05 PM America/New_York during EST (winter). Update for DST if you want it to stay at noon year-round.
+    # Run daily at 12:00 PM EST (winter). Note: GitHub cron uses UTC; 12:00 PM EST = 17:00 UTC.
+    - cron: "0 17 * * *"
   workflow_dispatch:
     inputs:
       topic:
