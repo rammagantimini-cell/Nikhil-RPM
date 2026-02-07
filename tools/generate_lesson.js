@@ -3,7 +3,7 @@
  * Generate a daily RPM lesson under YYYY-MM-DD/lesson.html
  *
  * Usage:
- *   node tools/generate_lesson.js --topic "Volcanoes" --date 2026-02-07 --prompts 5
+ *   node tools/generate_lesson.js --topic "Volcanoes" --date 2026-02-07 --prompts 10
  *   node tools/generate_lesson.js            # rotates topic
  */
 
@@ -169,8 +169,9 @@ function renderLesson({ topicObj, y }){
   </div>
 
   <div class="topic-intro">
-    <h2>Today's Topic</h2>
+    <h2>Today's Topic (15 minutes)</h2>
     ${introHtml}
+    <p><strong>Session pacing:</strong> Read the short intro (2–3 minutes), then do 10 prompts (about ~1 minute each). Pause as needed.</p>
   </div>
 
   ${cards}
@@ -185,10 +186,20 @@ function main(){
     process.exit(0);
   }
   const y = ymd(args.date);
-  const promptCount = Number.isFinite(args.prompts) && args.prompts>0 ? args.prompts : 5;
+  const promptCount = Number.isFinite(args.prompts) && args.prompts>0 ? args.prompts : 10;
 
   const topicObj = pickTopic(args.topic);
-  topicObj.prompts = (topicObj.prompts || []).slice(0, promptCount);
+  // Ensure we have enough prompts; if not, pad with generic RPM-style prompts.
+  const prompts = (topicObj.prompts || []).slice();
+  while (prompts.length < promptCount) {
+    const n = prompts.length + 1;
+    prompts.push({
+      q: `Prompt ${n}: Spell the key word for today’s topic (${topicObj.topic}).`,
+      a: String(topicObj.topic).toUpperCase(),
+      choices: [topicObj.topic, 'Not sure']
+    });
+  }
+  topicObj.prompts = prompts.slice(0, promptCount);
 
   const outDir = path.join(process.cwd(), y.dayFolder);
   fs.mkdirSync(outDir, { recursive: true });

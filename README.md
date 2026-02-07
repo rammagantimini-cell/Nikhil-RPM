@@ -9,8 +9,10 @@ Daily RPM lessons for Nikhil.
 
 ## Generate a lesson locally
 
+By default, lessons generate as **~15 minutes** with **10 prompts**.
+
 ```bash
-node tools/generate_lesson.js --topic "Volcanoes" --date 2026-02-07
+node tools/generate_lesson.js --topic "Volcanoes" --date 2026-02-07 --prompts 10
 # or (topic auto-rotates)
 node tools/generate_lesson.js
 
