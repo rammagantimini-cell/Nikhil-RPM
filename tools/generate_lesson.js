@@ -39,48 +39,90 @@ function letterSpaced(word){ return word.split('').join(' - ').replace(/\s-\s/g,
 const TOPIC_LIBRARY = [
   {
     topic: 'Volcanoes',
+    // ~500 words total across these paragraphs (5th-grade-friendly)
     intro: [
-      'Deep inside Earth, it is very hot. Heat can melt rock into a thick liquid called magma.',
-      'Sometimes magma pushes up through cracks and comes out of Earth. This is an eruption.',
-      'When magma reaches the surface, we call it lava. Lava can be extremely hot.'
+      'A volcano is like a special kind of mountain. It has an opening where hot rock, gas, and ash can come out. Volcanoes can be quiet for a long time, and then suddenly erupt. When a volcano erupts, it can look scary, but it is also one of the ways Earth changes and builds new land over many years.',
+      'Deep inside Earth, it is extremely hot. Some rock melts into a thick liquid called magma. Magma is underground. When magma rises and reaches the surface, we call it lava. Lava can be so hot that it glows red or orange. As lava cools, it turns into solid rock again. This is one reason volcanic islands can slowly grow larger.',
+      'Volcanoes happen because Earth’s outer shell is broken into large pieces called plates. These plates move very slowly. Sometimes plates pull apart, and magma can rise up to fill the gap. Sometimes one plate slides under another plate, and that can also create magma. Not every mountain is a volcano, but many volcanoes form where plates meet.',
+      'Volcanoes can cause different kinds of eruptions. Some eruptions are calm, where lava flows like a thick river. Other eruptions are explosive and send ash high into the sky. Volcanic ash is made of tiny pieces of rock, not soft fireplace ash. Ash can make the air dusty and can be dangerous to breathe, so people need to stay safe and follow warnings.',
+      'Even though volcanoes can be dangerous, they can also help people. Volcanic soil can be very good for growing plants. Volcanoes can create hot springs, and sometimes people use heat from deep underground (called geothermal energy) to make electricity. Scientists study volcanoes carefully so they can better understand when an eruption might happen and help communities prepare.'
+    ],
+    images: [
+      {
+        caption: 'Lava flowing during an eruption (example photo)',
+        url: 'https://upload.wikimedia.org/wikipedia/commons/0/0c/Lava_flowing_in_Hawaii.jpg',
+        source: 'Wikimedia Commons'
+      },
+      {
+        caption: 'A classic cone-shaped volcano (example photo)',
+        url: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/Mayon_Volcano_as_of_2020.jpg',
+        source: 'Wikimedia Commons'
+      }
     ],
     prompts: [
       { q: 'What do we call hot liquid rock inside Earth?', a: 'MAGMA', choices: ['Magma','Lava'] },
-      { q: 'What is it called when magma comes out of a volcano?', a: 'ERUPTION', choices: ['Eruption','Hibernation'] },
       { q: 'What do we call magma when it reaches the surface?', a: 'LAVA', choices: ['Lava','Ice'] },
-      { q: 'Are volcanoes hot or cold?', a: 'HOT', choices: ['Hot','Cold'] },
-      { q: 'A volcano often has an opening at the top. What is it called?', a: 'CRATER', choices: ['Crater','Cushion'] }
+      { q: 'What is it called when a volcano releases lava, gas, or ash?', a: 'ERUPTION', choices: ['Eruption','Hibernate'] },
+      { q: 'Earth’s outer shell is broken into moving pieces. What are they called?', a: 'PLATES', choices: ['Plates','Clouds'] },
+      { q: 'Is volcanic ash made of tiny pieces of rock or soft fireplace ash?', a: 'ROCK', choices: ['Rock','Soft ash'] }
     ]
   },
   {
     topic: 'The Water Cycle',
     intro: [
-      'Water is always moving around Earth. This journey is called the water cycle.',
-      'When the Sun heats water, it can turn into an invisible gas called water vapor. This is evaporation.',
-      'Water vapor cools high in the sky and forms clouds. This is condensation.',
-      'When drops get heavy, water falls as rain or snow. This is precipitation.'
+      'Water on Earth is always moving. It moves through oceans, lakes, rivers, clouds, and even through living things. This never-ending journey is called the water cycle. The water cycle matters because it brings fresh water to plants, animals, and people, and it helps create the weather we see every day.',
+      'One big step in the water cycle is evaporation. When the Sun warms water, some of that water turns into an invisible gas called water vapor. Evaporation happens from oceans, lakes, puddles, and even wet clothes hanging outside. Plants can also release water vapor from their leaves. That process is called transpiration.',
+      'Another step is condensation. High in the sky, air can be cooler. When water vapor cools down, it turns back into tiny liquid drops. Those drops gather to form clouds. If you have ever seen water drops on the outside of a cold glass, that is condensation too.',
+      'When the drops in clouds become heavy, they fall to the ground. This is precipitation. Precipitation can be rain, snow, sleet, or hail. After water falls, it can flow over the ground into streams and rivers. This is runoff. Some water also soaks into the ground. That is called infiltration, and it can refill underground water stores called aquifers.',
+      'The water cycle is powered mostly by the Sun. The Sun provides energy for evaporation and helps drive winds and weather patterns. The water cycle is also helped by gravity, which pulls water down as rain and helps rivers flow downhill. The water cycle reminds us that the same water can be used again and again, moving through Earth’s systems over long periods of time.'
+    ],
+    images: [
+      {
+        caption: 'Diagram-style water cycle image (example)',
+        url: 'https://upload.wikimedia.org/wikipedia/commons/5/5c/Water_cycle.png',
+        source: 'Wikimedia Commons'
+      },
+      {
+        caption: 'Clouds and rain over a landscape (example photo)',
+        url: 'https://upload.wikimedia.org/wikipedia/commons/1/1e/Rain_over_the_Sea.jpg',
+        source: 'Wikimedia Commons'
+      }
     ],
     prompts: [
       { q: 'What do we call water turning into water vapor?', a: 'EVAPORATION', choices: ['Evaporation','Precipitation'] },
-      { q: 'What forms when water vapor cools in the sky?', a: 'CLOUDS', choices: ['Clouds','Rocks'] },
-      { q: 'What do we call water falling from clouds?', a: 'PRECIPITATION', choices: ['Precipitation','Translation'] },
+      { q: 'What do we call water falling from clouds (rain or snow)?', a: 'PRECIPITATION', choices: ['Precipitation','Translation'] },
+      { q: 'What do we call water vapor turning into tiny drops to make clouds?', a: 'CONDENSATION', choices: ['Condensation','Celebration'] },
       { q: 'What is the gas called when water evaporates?', a: 'WATER VAPOR', choices: ['Water vapor','Lava'] },
-      { q: 'What powers the water cycle?', a: 'SUN', choices: ['Sun','Moon'] }
+      { q: 'What powers the water cycle the most?', a: 'SUN', choices: ['Sun','Moon'] }
     ]
   },
   {
     topic: 'The Solar System',
     intro: [
-      'Our solar system is made of the Sun and everything that travels around it.',
-      'There are eight planets. Earth is one of them.',
-      'The Sun is a star. It gives us light and heat.'
+      'Our solar system is like a big neighborhood in space. It includes the Sun, eight planets, and many smaller objects like moons, asteroids, and comets. Everything in the solar system is held together by gravity. Gravity is the force that pulls objects toward each other.',
+      'The Sun is a star at the center of our solar system. It is a huge ball of hot gas that gives off light and heat. Without the Sun, Earth would be too cold for most life. The Sun’s energy also helps drive Earth’s weather and powers plants as they grow.',
+      'The planets travel around the Sun in paths called orbits. Some planets are rocky, like Mercury, Venus, Earth, and Mars. These are called the inner planets. Other planets are mostly gas or ice, like Jupiter, Saturn, Uranus, and Neptune. These are called the outer planets. Jupiter is the biggest planet in the solar system.',
+      'Many planets have moons. Earth has one moon. Jupiter has many moons. Moons also orbit because of gravity. Our Moon affects Earth in interesting ways. For example, it helps cause ocean tides. Tides are the rising and falling of ocean water each day.',
+      'Scientists use telescopes and spacecraft to learn more about the solar system. Spacecraft have visited every planet. Some land, some orbit, and some fly by. Learning about the solar system helps us understand Earth better and helps humans plan future space travel.'
+    ],
+    images: [
+      {
+        caption: 'Solar system diagram (example)',
+        url: 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Solar_sys8.jpg',
+        source: 'Wikimedia Commons'
+      },
+      {
+        caption: 'Earth from space (example photo)',
+        url: 'https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg',
+        source: 'Wikimedia Commons'
+      }
     ],
     prompts: [
       { q: 'What is the Sun?', a: 'STAR', choices: ['Star','Planet'] },
       { q: 'How many planets are in our solar system?', a: 'EIGHT', choices: ['Eight','Ten'] },
       { q: 'What planet do we live on?', a: 'EARTH', choices: ['Earth','Mars'] },
-      { q: 'What gives us light and heat?', a: 'SUN', choices: ['Sun','Rain'] },
-      { q: 'What do planets travel around?', a: 'SUN', choices: ['Sun','Mountain'] }
+      { q: 'What force holds the solar system together?', a: 'GRAVITY', choices: ['Gravity','Electricity'] },
+      { q: 'What do we call the path a planet takes around the Sun?', a: 'ORBIT', choices: ['Orbit','Oven'] }
     ]
   }
 ];
@@ -112,6 +154,17 @@ function pickTopic(topicArg){
 function renderLesson({ topicObj, y }){
   const dateLabel = y.d.toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
   const introHtml = topicObj.intro.map(p => `<p>${p}</p>`).join('\n');
+  const imagesHtml = (topicObj.images && topicObj.images.length)
+    ? `<div class="images"><h2>Pictures</h2>${topicObj.images.map(img => `
+        <figure>
+          <a href="${img.url}" target="_blank" rel="noopener noreferrer">
+            <img src="${img.url}" alt="${img.caption}" />
+          </a>
+          <figcaption>${img.caption} <span class="src">(${img.source})</span></figcaption>
+        </figure>`).join('')}
+      </div>`
+    : '';
+
   const prompts = topicObj.prompts;
 
   const cards = prompts.map((p, i) => {
@@ -149,8 +202,13 @@ function renderLesson({ topicObj, y }){
     .header { background:linear-gradient(135deg,#667eea,#764ba2); color:#fff; padding:18px; border-radius:12px; margin-bottom:18px; }
     .header h1 { margin:0 0 6px 0; font-size:1.4rem; }
     .header .date { opacity:0.9; }
-    .topic-intro, .prompt-card { background:#fff; padding:18px; border-radius:12px; margin-bottom:12px; box-shadow:0 2px 8px rgba(0,0,0,0.08); }
+    .topic-intro, .prompt-card, .images { background:#fff; padding:18px; border-radius:12px; margin-bottom:12px; box-shadow:0 2px 8px rgba(0,0,0,0.08); }
     .topic-intro h2 { margin:0 0 8px 0; color:#667eea; }
+    .images h2 { margin:0 0 8px 0; color:#667eea; }
+    .images figure { margin: 12px 0; }
+    .images img { width: 100%; max-width: 860px; border-radius: 10px; display:block; }
+    .images figcaption { margin-top: 6px; color:#444; font-size: 0.95rem; }
+    .images .src { color:#777; }
     .prompt-card { border-left:4px solid #667eea; }
     .prompt-number { color:#667eea; font-weight:700; font-size:0.85rem; margin-bottom:8px; }
     .question { font-weight:800; font-size:1.15rem; margin-bottom:12px; }
@@ -173,6 +231,8 @@ function renderLesson({ topicObj, y }){
     ${introHtml}
     <p><strong>Session pacing:</strong> Read the short intro (2–3 minutes), then do 10 prompts (about ~1 minute each). Pause as needed.</p>
   </div>
+
+  ${imagesHtml}
 
   ${cards}
 </body>
