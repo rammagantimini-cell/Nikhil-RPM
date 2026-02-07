@@ -1,0 +1,50 @@
+name: Daily RPM Lesson
+
+on:
+  schedule:
+    # Run daily at 12:05 PM Eastern Time (accounts for DST automatically via TZ)
+    - cron: "5 17 * * *"  # 17:05 UTC = 12:05 PM America/New_York during EST (winter). Update for DST if you want it to stay at noon year-round.
+  workflow_dispatch:
+    inputs:
+      topic:
+        description: "Optional topic override"
+        required: false
+        default: ""
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    env:
+      TZ: America/New_York
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Generate today's lesson
+        run: |
+          TOPIC="${{ github.event.inputs.topic }}"
+          if [ -n "$TOPIC" ]; then
+            node tools/generate_lesson.js --topic "$TOPIC"
+          else
+            node tools/generate_lesson.js
+          fi
+
+      - name: Build indexes
+        run: node tools/build_indexes.js
+
+      - name: Commit & push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Daily lesson $(date +%F)"
+          git push
