@@ -11,13 +11,31 @@ function pad2(n){ return String(n).padStart(2,'0'); }
 
 function findLessonFolders(){
   const folders = [];
-  const entries = fs.readdirSync('.', { withFileTypes: true });
   
-  for (const entry of entries) {
+  // Check root level for current month lessons
+  const rootEntries = fs.readdirSync('.', { withFileTypes: true });
+  for (const entry of rootEntries) {
     if (entry.isDirectory() && /^\d{4}-\d{2}-\d{2}$/.test(entry.name)) {
       const lessonPath = path.join(entry.name, 'lesson.html');
       if (fs.existsSync(lessonPath)) {
         folders.push(entry.name);
+      }
+    }
+  }
+  
+  // Check month folders for archived lessons (e.g., 2026-02/2026-02-15/)
+  const monthFolders = rootEntries
+    .filter(e => e.isDirectory() && /^\d{4}-\d{2}$/.test(e.name))
+    .map(e => e.name);
+  
+  for (const monthFolder of monthFolders) {
+    const monthEntries = fs.readdirSync(monthFolder, { withFileTypes: true });
+    for (const entry of monthEntries) {
+      if (entry.isDirectory() && /^\d{4}-\d{2}-\d{2}$/.test(entry.name)) {
+        const lessonPath = path.join(monthFolder, entry.name, 'lesson.html');
+        if (fs.existsSync(lessonPath)) {
+          folders.push(`${monthFolder}/${entry.name}`);
+        }
       }
     }
   }
@@ -27,15 +45,20 @@ function findLessonFolders(){
 
 function groupByYearMonth(folders){
   const groups = {};
-  for (const folder of folders) {
-    const [y, m] = folder.split('-');
+  for (const folderPath of folders) {
+    // Extract date from path like "2026-02/2026-02-15" or "2026-02-15"
+    const parts = folderPath.split('/');
+    const dayFolder = parts[parts.length - 1]; // "2026-02-15"
+    const [y, m] = dayFolder.split('-');
     const year = y;
     const month = `${y}-${m}`;
-    const day = folder;
     
     if (!groups[year]) groups[year] = {};
     if (!groups[year][month]) groups[year][month] = [];
-    groups[year][month].push(day);
+    groups[year][month].push({
+      path: folderPath,
+      day: dayFolder
+    });
   }
   return groups;
 }
@@ -67,10 +90,10 @@ function generateSidebarNav(groups, relativePath='.'){
       html += `        <div class="nav-section-title">${monthName(m)}</div>\n`;
       html += `        <div class="nav-items">\n`;
       
-      for (const day of days) {
-        const [yy, mm, dd] = day.split('-');
+      for (const dayInfo of days) {
+        const [yy, mm, dd] = dayInfo.day.split('-');
         const displayDate = `${parseInt(mm)}/${parseInt(dd)}`;
-        html += `          <a class="nav-item" href="${relativePath}/${day}/lesson.html" data-date="${day}">${displayDate}</a>\n`;
+        html += `          <a class="nav-item" href="${relativePath}/${dayInfo.path}/lesson.html" data-date="${dayInfo.day}">${displayDate}</a>\n`;
       }
       
       html += `        </div>\n`;
@@ -96,13 +119,13 @@ function generateSimpleNav(groups, relativePath='..'){
     
     for (const month of monthKeys) {
       const [y, m] = month.split('-');
-      const days = months[month].sort();
+      const days = months[month].sort((a, b) => a.day.localeCompare(b.day));
       
       html += `<h4 style="color:#667eea;margin:15px 0 8px 0;">${monthName(m)} ${y}</h4>\n`;
       
-      for (const day of days) {
-        const [yy, mm, dd] = day.split('-');
-        html += `<a href="${relativePath}/${day}/lesson.html">${monthName(m)} ${parseInt(dd)}</a>\n`;
+      for (const dayInfo of days) {
+        const [yy, mm, dd] = dayInfo.day.split('-');
+        html += `<a href="${relativePath}/${dayInfo.path}/lesson.html">${monthName(m)} ${parseInt(dd)}</a>\n`;
       }
     }
   }
@@ -130,16 +153,16 @@ function updateMainIndex(groups){
       allDays.push(...groups[year][month]);
     }
   }
-  const recentDays = allDays.sort().reverse().slice(0, 7);
+  const recentDays = allDays.sort((a, b) => b.day.localeCompare(a.day)).slice(0, 7);
   
   let recentHtml = '';
-  for (const day of recentDays) {
-    const [y, m, d] = day.split('-');
+  for (const dayInfo of recentDays) {
+    const [y, m, d] = dayInfo.day.split('-');
     const today = new Date().toISOString().split('T')[0];
-    const isToday = day === today;
+    const isToday = dayInfo.day === today;
     const cssClass = isToday ? 'lesson-link today' : 'lesson-link';
     const display = `${monthName(m).slice(0,3)} ${parseInt(d)}`;
-    recentHtml += `        <a class="${cssClass}" href="${day}/lesson.html">${display}</a>\n`;
+    recentHtml += `        <a class="${cssClass}" href="${dayInfo.path}/lesson.html">${display}</a>\n`;
   }
   
   content = content.replace(/<div class="lesson-grid">[\s\S]*?<\/div>/, 
