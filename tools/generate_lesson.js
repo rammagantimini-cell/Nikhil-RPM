@@ -124,8 +124,153 @@ const TOPIC_LIBRARY = [
       { q: 'What force holds the solar system together?', a: 'GRAVITY', choices: ['Gravity','Electricity'] },
       { q: 'What do we call the path a planet takes around the Sun?', a: 'ORBIT', choices: ['Orbit','Oven'] }
     ]
+  },
+  {
+    topic: 'Dinosaurs',
+    intro: [
+      'Dinosaurs were animals that lived on Earth long before humans existed. They lived during a time called the Mesozoic Era, which was millions of years ago. Some dinosaurs were very large, while others were small. Dinosaurs came in many shapes and sizes.',
+      'Dinosaurs lived on land, in water, and some could fly. Dinosaurs that flew are often called pterosaurs. Dinosaurs that lived in water included animals like plesiosaurs. However, many famous dinosaurs like Tyrannosaurus Rex lived on land.',
+      'Dinosaurs are different from other reptiles because of how their legs are built. Their legs went straight down under their bodies, like elephants or dogs. This helped them walk and run more easily.',
+      'Scientists learn about dinosaurs by studying fossils. Fossils are remains of plants and animals that turned into stone over millions of years. Fossils can be bones, teeth, footprints, or even eggs. By studying fossils, scientists understand how dinosaurs lived, what they ate, and how they moved.',
+      'Scientists think that dinosaurs went extinct about 66 million years ago. Many scientists believe a large asteroid hit Earth, causing big changes in the climate. This made it hard for dinosaurs to survive. However, some dinosaurs survived and evolved into birds we see today.'
+    ],
+    images: [
+      {
+        caption: 'Tyrannosaurus Rex skeleton (example)',
+        url: 'https://upload.wikimedia.org/wikipedia/commons/e/ec/Tyrannosaurus_Rex_Holotype.jpg',
+        source: 'Wikimedia Commons'
+      }
+    ],
+    prompts: [
+      { q: 'What do we call animals that lived millions of years ago?', a: 'DINOSAURS', choices: ['Dinosaurs','Robots'] },
+      { q: 'How do scientists learn about dinosaurs?', a: 'FOSSILS', choices: ['Fossils','Books'] },
+      { q: 'What happened to most dinosaurs long ago?', a: 'EXTINCT', choices: ['Extinct','Expanded'] },
+      { q: 'Which dinosaurs could fly?', a: 'PTEROSAURS', choices: ['Pterosaurs','T-Rex'] },
+      { q: 'What modern animals came from dinosaurs?', a: 'BIRDS', choices: ['Birds','Fish'] }
+    ]
+  },
+  {
+    topic: 'Weather',
+    intro: [
+      'Weather is what is happening in the air around us. Weather includes things like temperature, rain, wind, and clouds. Weather can change from day to day or even hour to hour. Understanding weather helps us know what to wear and how to plan our day.',
+      'Temperature tells us how hot or cold the air is. We measure temperature using thermometers. Temperature can change during the day. It is usually cooler in the morning and at night, and warmer in the middle of the day.',
+      'Clouds are made of tiny water drops or ice crystals. Different types of clouds look different. White, puffy clouds often mean good weather. Dark, gray clouds can mean rain is coming. Clouds help us predict what weather is coming.',
+      'Wind is moving air. Wind happens because air moves from places with high pressure to places with low pressure. Some days are very windy. Other days have almost no wind. Wind can be gentle like a breeze or strong like a storm.',
+      'Storms happen when different kinds of air meet. Thunderstorms have lightning and thunder. Lightning is a bright flash of electricity in the sky. Thunder is the sound that comes after lightning. Storms can be scary, but they also help water plants and fill rivers.'
+    ],
+    images: [
+      {
+        caption: 'Rainbow after rain (example)',
+        url: 'https://upload.wikimedia.org/wikipedia/commons/5/5c/Double_alaskan_rainbow.jpg',
+        source: 'Wikimedia Commons'
+      }
+    ],
+    prompts: [
+      { q: 'What do we use to measure temperature?', a: 'THERMOMETER', choices: ['Thermometer','Telescope'] },
+      { q: 'What are clouds made of?', a: 'WATER DROPS', choices: ['Water drops','Cotton'] },
+      { q: 'What is moving air called?', a: 'WIND', choices: ['Wind','Wave'] },
+      { q: 'What bright flash happens in storms?', a: 'LIGHTNING', choices: ['Lightning','Thunder'] },
+      { q: 'Do dark clouds usually mean rain or sunshine?', a: 'RAIN', choices: ['Rain','Sunshine'] }
+    ]
+  },
+  {
+    topic: 'Plants',
+    intro: [
+      'Plants are living things that make their own food. Unlike animals, plants do not need to eat other living things. Plants use sunlight, water, and air to make food. This process is called photosynthesis.',
+      'Most plants have roots, stems, and leaves. Roots hold the plant in the ground and absorb water. Stems support the plant and carry water to the leaves. Leaves are where photosynthesis happens. Leaves are usually flat and green.',
+      'Plants need several things to grow. They need sunlight for energy. They need water to stay alive and make food. They need air, especially carbon dioxide from the air. They also need nutrients from soil to stay healthy.',
+      'Flowers are special parts of some plants. Flowers help plants make seeds. Seeds can grow into new plants. Many flowers have bright colors and sweet smells. These attract bees and other insects that help spread pollen.',
+      'Trees are very big plants. Some trees live for hundreds of years. Trees have thick woody stems called trunks. Trees give us oxygen to breathe. They also provide homes for animals and shade for people on hot days.'
+    ],
+    images: [
+      {
+        caption: 'A green plant with leaves (example)',
+        url: 'https://upload.wikimedia.org/wikipedia/commons/3/3f/Plant_growing.jpg',
+        source: 'Wikimedia Commons'
+      }
+    ],
+    prompts: [
+      { q: 'What do plants make their own food from?', a: 'SUNLIGHT', choices: ['Sunlight','Pizza'] },
+      { q: 'What is the process called when plants make food?', a: 'PHOTOSYNTHESIS', choices: ['Photosynthesis','Digestion'] },
+      { q: 'What part of the plant absorbs water?', a: 'ROOTS', choices: ['Roots','Leaves'] },
+      { q: 'What color are most plant leaves?', a: 'GREEN', choices: ['Green','Red'] },
+      { q: 'What do plants give us that we breathe?', a: 'OXYGEN', choices: ['Oxygen','Carbon'] }
+    ]
+  },
+  {
+    topic: 'Electricity',
+    intro: [
+      'Electricity is a form of energy. We use electricity every day. It powers our lights, computers, televisions, and many other things. Electricity can be very useful, but it must be used safely.',
+      'Electricity flows through paths called circuits. A circuit is like a loop. Electricity starts at a power source, flows through wires, powers a device like a light bulb, and then returns to the source. If the loop is broken, electricity cannot flow.',
+      'Some materials let electricity flow through them easily. These are called conductors. Metals like copper are good conductors. Other materials do not let electricity flow. These are called insulators. Rubber and plastic are good insulators.',
+      'Static electricity is a special kind of electricity. It happens when electric charges build up on something. You might feel static electricity when you touch a doorknob after walking on carpet. You might see it as a small spark.',
+      'Lightning is a very powerful form of electricity in nature. It happens during storms when electric charges build up in clouds. Lightning can be dangerous. That is why we should stay inside during thunderstorms.'
+    ],
+    images: [
+      {
+        caption: 'Lightning during a storm (example)',
+        url: 'https://upload.wikimedia.org/wikipedia/commons/1/19/Lightning_strike.jpg',
+        source: 'Wikimedia Commons'
+      }
+    ],
+    prompts: [
+      { q: 'What is the path electricity flows through called?', a: 'CIRCUIT', choices: ['Circuit','Circle'] },
+      { q: 'What metals let electricity flow easily?', a: 'CONDUCTORS', choices: ['Conductors','Insulators'] },
+      { q: 'What materials block electricity flow?', a: 'INSULATORS', choices: ['Insulators','Conductors'] },
+      { q: 'What kind of electricity makes sparks on carpet?', a: 'STATIC', choices: ['Static','Current'] },
+      { q: 'What is powerful electricity in storms called?', a: 'LIGHTNING', choices: ['Lightning','Thunder'] }
+    ]
+  },
+  {
+    topic: 'Magnets',
+    intro: [
+      'Magnets are objects that can pull on certain metals. This pull is called magnetism. Magnets have two ends called poles. One end is the north pole, and the other is the south pole.',
+      'Opposite poles attract each other. This means the north pole of one magnet will pull toward the south pole of another magnet. But same poles repel each other. Two north poles will push away from each other. Two south poles also repel.',
+      'Magnets can pull on objects made of iron, nickel, or cobalt. These are called magnetic materials. Not all metals are magnetic. Gold, silver, and aluminum are not magnetic. Also, not all objects are magnetic. Wood, plastic, and glass are not magnetic.',
+      'Earth is like a giant magnet. It has a magnetic field that goes all around it. This is why compass needles point north. The needle in a compass is a small magnet that lines up with Earth’s magnetic field.',
+      'Magnets are used in many ways. They are in refrigerator doors to keep them closed. They are in speakers to make sound. They are in motors to make things move. Magnets are even used in some trains called maglev trains that float above the track.'
+    ],
+    images: [
+      {
+        caption: 'Magnets attracting metal (example)',
+        url: 'https://upload.wikimedia.org/wikipedia/commons/c/c0/Magnet_with_iron_filings.jpg',
+        source: 'Wikimedia Commons'
+      }
+    ],
+    prompts: [
+      { q: 'What is the force called that magnets use to pull?', a: 'MAGNETISM', choices: ['Magnetism','Gravity'] },
+      { q: 'Do opposite poles attract or repel?', a: 'ATTRACT', choices: ['Attract','Repel'] },
+      { q: 'Do same poles attract or repel?', a: 'REPEL', choices: ['Repel','Attract'] },
+      { q: 'Which metal is magnetic?', a: 'IRON', choices: ['Iron','Gold'] },
+      { q: 'What tool uses a magnet to point north?', a: 'COMPASS', choices: ['Compass','Clock'] }
+    ]
   }
 ];
+
+function getUsedTopics(){
+  const usedPath = path.join(process.cwd(), 'data', 'used_topics.json');
+  if (fs.existsSync(usedPath)) {
+    try {
+      return JSON.parse(fs.readFileSync(usedPath, 'utf8'));
+    } catch (e) {
+      return { topics: [] };
+    }
+  }
+  return { topics: [] };
+}
+
+function saveUsedTopic(topicName){
+  const dataDir = path.join(process.cwd(), 'data');
+  if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
+  const usedPath = path.join(dataDir, 'used_topics.json');
+  const used = getUsedTopics();
+  used.topics.push({ topic: topicName, date: new Date().toISOString().split('T')[0] });
+  // Keep only last 14 days
+  const cutoff = new Date();
+  cutoff.setDate(cutoff.getDate() - 14);
+  used.topics = used.topics.filter(t => new Date(t.date) >= cutoff);
+  fs.writeFileSync(usedPath, JSON.stringify(used, null, 2));
+}
 
 function pickTopic(topicArg){
   if (topicArg) {
@@ -147,8 +292,25 @@ function pickTopic(topicArg){
       ]
     };
   }
-  const idx = Math.floor(Date.now()/86400000) % TOPIC_LIBRARY.length;
-  return TOPIC_LIBRARY[idx];
+  
+  // Get recently used topics (last 7 days)
+  const used = getUsedTopics();
+  const recentTopics = new Set(used.topics.slice(-7).map(t => t.topic.toLowerCase()));
+  
+  // Find topics not used recently
+  const available = TOPIC_LIBRARY.filter(t => !recentTopics.has(t.topic.toLowerCase()));
+  
+  // If all topics were used recently, reset and use any topic
+  const pool = available.length > 0 ? available : TOPIC_LIBRARY;
+  
+  // Pick randomly from available pool
+  const idx = Math.floor(Math.random() * pool.length);
+  const selected = pool[idx];
+  
+  // Save as used
+  saveUsedTopic(selected.topic);
+  
+  return selected;
 }
 
 function renderLesson({ topicObj, y }){
